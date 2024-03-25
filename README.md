@@ -1,10 +1,8 @@
-<<<<<<< HEAD
 # Django-dashboard
+
 A bioinformatic dashboard build by Django web framework. 
 =======
-## Codebase structure
-
-The project is coded using a simple and intuitive structure presented below:
+## Django代码结构
 
 ```bash
 < PROJECT ROOT >
@@ -32,73 +30,42 @@ The project is coded using a simple and intuitive structure presented below:
 
 <br />
 
-## How to Customize 
 
-When a template file is loaded in the controller, `Django` scans all template directories starting from the ones defined by the user, and returns the first match or an error in case the template is not found. 
-The  theme used to style this starter provides the following files: 
 
-```bash
-# This exists in ENV: LIB/admin_volt
-< UI_LIBRARY_ROOT >                     
-   |
-   |-- templates/                    # Root Templates Folder 
-   |    |          
-   |    |-- accounts/       
-   |    |    |-- sign-in.html        # Sign IN Page
-   |    |    |-- sign-up.html        # Sign UP Page
-   |    |
-   |    |-- includes/       
-   |    |    |-- footer.html         # Footer component
-   |    |    |-- sidebar.html        # Sidebar component
-   |    |    |-- navigation.html     # Navigation Bar
-   |    |    |-- scripts.html        # Scripts Component
-   |    |
-   |    |-- layouts/       
-   |    |    |-- base.html           # Masterpage
-   |    |    |-- base-auth.html      # Masterpage for Auth Pages
-   |    |
-   |    |-- pages/       
-   |         |-- index.html          # Index Page (presentation)
-   |         |-- settings.html       # Settings  Page
-   |         |-- dashboard.html      # Dashboard page
-   |         |-- *.html              # All other pages
-   |    
-   |-- ************************************************************************
+## 部署
+
+克隆项目：
+
+```
+git clone https://github.com/czhcooper/Django-dashboard.git
+cd Django-dashboard
 ```
 
-When the project requires customization, we need to copy the original file that needs an update (from the virtual environment) and place it in the template folder using the same path. 
+安装依赖：
 
-> For instance, if we want to **customize the footer.html** these are the steps:
+```
+virtualenv env
+source env/bin/activate
+pip install -r requirements.txt
+```
 
-- ✅ `Step 1`: create the `templates` DIRECTORY inside the `home` app
-- ✅ `Step 2`: configure the project to use this new template directory
-  - `core/settings.py` TEMPLATES section
-- ✅ `Step 3`: copy the `footer.html` from the original location (inside your ENV) and save it to the `home/templates` DIR
-  - Source PATH: `<YOUR_ENV>/LIB/admin_volt/includes/footer.html`
-  - Destination PATH: `<PROJECT_ROOT>home/templates/includes/footer.html`
+设置数据库：
 
-> To speed up all these steps, the **codebase is already configured** (`Steps 1, and 2`) and a `custom footer` can be found at this location:
+```
+python manage.py makemigrations
+python manage.py migrate
+```
 
-`home/templates/includes/custom_footer.html` 
+在`core/setting.py` 中添加：
 
-By default, this file is unused because the `theme` expects `footer.html` (without the `custom-` prefix). 
+```
+ALLOWED_HOSTS = ['example.com','www.example.com'] #你的域名
+CSRF_TRUSTED_ORIGINS = ['https://example.com', 'https://www.example.com']
+```
 
-In order to use it, simply rename it to `footer.html`. Like this, the default version shipped in the library is ignored by Django. 
+运行项目：
 
-In a similar way, all other files and components can be customized easily.
+```
+python manage.py runserver 
+```
 
-<br />
-
-## Deploy on [Render](https://render.com/)
-
-- Create a Blueprint instance
-  - Go to https://dashboard.render.com/blueprints this link.
-- Click `New Blueprint Instance` button.
-- Connect your `repo` which you want to deploy.
-- Fill the `Service Group Name` and click on `Update Existing Resources` button.
-- After that your deployment will start automatically.
-
-At this point, the product should be LIVE.
-
-<br />
->>>>>>> 2359221 (Initial commit)
