@@ -1,7 +1,6 @@
 # Django-dashboard
 
-A bioinformatic dashboard build by Django web framework. 
-=======
+
 ## Django代码结构
 
 ```bash
