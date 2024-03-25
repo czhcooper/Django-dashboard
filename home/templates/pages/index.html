@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  {% include 'includes/head.html' %}
+</head>
+
+<body>
+  <header class="header-global">
+    <nav id="navbar-main" aria-label="Primary navigation"
+      class="navbar navbar-main navbar-expand-lg navbar-theme-primary pt-4 navbar-dark">
+      <div class="container position-relative">
+        <div class="navbar-collapse collapse me-auto" id="navbar_global">
+          <div class="navbar-collapse-header">
+            <div class="row">
+              <div class="col-6 collapse-brand">
+                <a href="{% url 'index' %}">
+                  <img src="{% static 'assets/img/brand/light.svg' %}" alt="Volt logo">
+                </a>
+              </div>
+              <div class="col-6 collapse-close">
+                <a href="#navbar_global" class="fas fa-times" data-toggle="collapse" data-target="#navbar_global"
+                  aria-controls="navbar_global" aria-expanded="false" title="close" aria-label="Toggle navigation"></a>
+              </div>
+            </div>
+          </div>
+          <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
+            <li class="nav-item me-2">
+              <a href="{% url 'dashboard' %}" class="nav-link">生信云平台</a>
+            </li>
+            {% if request.user.is_authenticated %}
+              <li class="nav-item me-2">
+                <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+              </li>
+            {% else %}
+              <li class="nav-item me-2">
+                <a href="{% url 'login' %}" class="nav-link">登录</a>
+              </li>
+              <li class="nav-item me-2">
+                <a href="{% url 'register' %}" class="nav-link">注册</a>
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+        <div class="d-flex align-items-center ms-auto">
+          <a href="https://github.com/czhcooper" target="_blank"
+             class="btn btn-outline-white d-inline-flex align-items-center me-md-3">
+            <svg class="icon icon-xxs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd"
+                d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z"
+                clip-rule="evenodd"></path>
+            </svg>
+            More Demos 
+          </a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary text-white">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <div class="bootstrap-big-icon d-none d-lg-block">
+              <svg xmlns="http://www.w3.org/2000/svg" width="700" height="622" class="d-block my-1" viewBox="0 0 118 94"
+                role="img">
+                <title>Bootstrap</title>
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"
+                  fill="currentColor"></path>
+              </svg>
+            </div>
+            <h1 class="fw-bolder">生物信息分析云平台</h1>
+            <h2 class="lead fw-normal text-muted mb-5">Built with Django web framework</h2>
+            <!-- Button Modal -->
+            <div class="d-flex align-items-center justify-content-center mb-5">
+              <a href="{% url 'dashboard' %}"
+                class="btn btn-secondary d-inline-flex align-items-center me-4">
+                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd"
+                    d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z"
+                    clip-rule="evenodd"></path>
+                </svg>
+                分析流程 Demo
+              </a>
+            </div>
+            <div class="d-flex justify-content-center flex-column mb-6 mb-lg-5">
+                
+                <span class="text-muted font-small"> </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <figure class="position-absolute bottom-0 left-0 w-100 d-none d-md-block mb-n2"><svg class="home-pattern"
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3000 185.4">
+          <path d="M3000,0v185.4H0V0c496.4,115.6,996.4,173.4,1500,173.4S2503.6,115.6,3000,0z"></path>
+        </svg></figure>
+    </section>
+    <div class="section pt-0">
+      <div class="container mt-n10 mt-lg-n12 z-2">
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <img src="{% static 'assets/img/mockup-presentation.png' %}" alt="Mockup presentation">
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="section section-lg bg-soft pt-0">
+      <div class="container">
+        <div class="row justify-content-center mb-5 mb-lg-6">
+          <div class="col-6 col-md-3 text-center mb-4">
+            <div class="icon icon-shape bg-white shadow-lg rounded mb-4">
+              <svg class="icon icon-md text-secondary" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="fw-bolder">一站式</h3>
+            <p class="text-gray">从方案设计、样品准备到生信分析、文章发表，一站式的服务</p>
+          </div>
+          <div class="col-6 col-md-3 text-center mb-4">
+            <div class="icon icon-shape bg-white shadow-lg rounded mb-4">
+              <svg class="icon icon-md text-secondary" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M10 3.5a1.5 1.5 0 013 0V4a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-.5a1.5 1.5 0 000 3h.5a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-.5a1.5 1.5 0 00-3 0v.5a1 1 0 01-1 1H6a1 1 0 01-1-1v-3a1 1 0 00-1-1h-.5a1.5 1.5 0 010-3H4a1 1 0 001-1V6a1 1 0 011-1h3a1 1 0 001-1v-.5z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="fw-bolder">定制化</h3>
+            <p class="text-gray">首创行业“定制化”服务模式，根据样品特点、分析需求、研究目的定制化项目研究方案</p>
+          </div>
+          <div class="col-6 col-md-3 text-center">
+            <div class="icon icon-shape bg-white shadow-lg rounded mb-4">
+              <svg class="icon icon-md text-secondary" fill="currentColor" viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1h4v1a2 2 0 11-4 0zM12 14c.015-.34.208-.646.477-.859a4 4 0 10-4.954 0c.27.213.462.519.476.859h4.002z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="fw-bolder">技术支撑</h3>
+            <p class="text-gray">行业唯一“一对一”技术支持模式，全程跟进确保项目顺利开展，直至文章发表</p>
+          </div>
+          <div class="col-6 col-md-3 text-center">
+            <div class="icon icon-shape bg-white shadow-lg rounded mb-4">
+              <svg class="icon icon-md text-secondary" aria-hidden="true" focusable="false" data-prefix="fab"
+                data-icon="js-square" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path fill="currentColor"
+                  d="M400 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zM243.8 381.4c0 43.6-25.6 63.5-62.9 63.5-33.7 0-53.2-17.4-63.2-38.5l34.3-20.7c6.6 11.7 12.6 21.6 27.1 21.6 13.8 0 22.6-5.4 22.6-26.5V237.7h42.1v143.7zm99.6 63.5c-39.1 0-64.4-18.6-76.7-43l34.3-19.8c9 14.7 20.8 25.6 41.5 25.6 17.4 0 28.6-8.7 28.6-20.8 0-14.4-11.4-19.5-30.7-28l-10.5-4.5c-30.4-12.9-50.5-29.2-50.5-63.5 0-31.6 24.1-55.6 61.6-55.6 26.8 0 46 9.3 59.8 33.7L368 290c-7.2-12.9-15-18-27.1-18-12.3 0-20.1 7.8-20.1 18 0 12.6 7.8 17.7 25.9 25.6l10.5 4.5c35.8 15.3 55.9 31 55.9 66.2 0 37.8-29.8 58.6-69.7 58.6z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="fw-bolder">数据交互</h3>
+            <p class="text-gray">搭建云分析平台，为客户提供数据交互动态挖掘</p>
+          </div>
+        </div>
+        <div class="row justify-content-between align-items-center mb-5 mb-lg-7">
+          <div class="row justify-content-between align-items-center">
+            <div class="col-lg-5 order-lg-2 mb-5 mb-lg-0">
+              <h2 class="h1">Bootstrap 5</h2>
+              <p class="mb-4 lead fw-bold">Latest version of Bootstrap without jQuery</p>
+              <p class="mb-4">Volt is built using the latest version of Bootstrap 5 and we only used Vanilla Javascript
+                for everything including the plugins</p>
+            </div>
+          
+          <div class="col-lg-6">
+            <img src="{% static 'assets/img/mockup-kanban-presentation.png' %}" alt="Kanban Preview">
+          </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer py-6 bg-gray-800 text-white">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <img class="navbar-brand-dark mb-4" height="35" src="{% static 'assets/img/brand/light.svg' %}" alt="Logo light">
+          <p>本网站前端使用了Volt Bootstrap面板，后端使用了Django框架，分析流程由snakemake编写。</p>
+          <ul class="social-buttons mb-5 mb-lg-0">
+            <li>
+              <a href="https://twitter.com/themesberg" aria-label="twitter social link" class="icon-white me-2">
+                <span class="fab fa-twitter"></span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.facebook.com/themesberg/" class="icon-white me-2" aria-label="facebook social link">
+                <span class="fab fa-facebook"></span>
+              </a>
+            </li>
+            <li>
+              <a href="https://github.com/themesberg" aria-label="github social link" class="icon-white me-2">
+                <span class="fab fa-github"></span>
+              </a>
+            </li>
+            <li>
+              <a href="https://dribbble.com/themesberg" class="icon-white" aria-label="dribbble social link">
+                <span class="fab fa-dribbble"></span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-2 mb-5 mb-lg-0">
+          <span class="h5">分析流程</span>
+          <ul class="links-vertical mt-2">
+            <li><a 
+              target="_blank">单细胞转录组
+              <span class="badge badge-sm bg-secondary text-dark ms-2">待开发</span></a></li>
+              <li><a 
+                target="_blank">甲基化组
+                <span class="badge badge-sm bg-secondary text-dark ms-2">待开发</span></a></li>
+                            <li><a href="{% url 'pipeline_rnaseq' %}"
+              target="_blank">真核转录组
+              <span class="badge badge-sm bg-secondary text-dark ms-2">Demo</span></a></li>
+              <li><a href=""
+                target="_blank">16S扩增子
+                <span class="badge badge-sm bg-secondary text-dark ms-2">Demo</span></a></li>
+              <li><a 
+                  target="_blank">环境eDNA
+                  <span class="badge badge-sm bg-secondary text-dark ms-2">待开发</span></a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md-2 mb-5 mb-lg-0">
+          <span class="h5">Galaxy平台</span>
+          <ul class="links-vertical mt-2">
+
+            <li><a href="http://124.222.116.93:7071/"
+                target="_blank">qiime2</a></li>
+            <li><a href="http://124.222.116.93:7171/"
+                target="_blank">RNA workbench</a></li>           
+
+          </ul>
+        </div>
+        <div class="col-12 col-md-4 mb-5 mb-lg-0">
+          <span class="h5 mb-3 d-block">About Me</span>
+          <ul class="links-vertical mt-2">
+            <li><a target="_blank" href="https://github.com/czhcooper">github主页</a></li>
+            <li><a target="_blank" href="https://czhcooper.github.io/">个人博客</a></li>
+            <li><a target="_blank" >联系方式：laobocooper@gmail.com</a></li>
+            <li><a target="_blank" >License & Support</a></li>
+            <li><a target="_blank" >Feel free to contact me.</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="bg-gray-700 my-5">
+      <div class="row">
+        <div class="col mb-md-0">
+          <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
+            <p class="fw-normal font-small mb-0">
+              &copy; 2024 - Coded by Zaohuang Chen.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  {% include 'includes/scripts.html' %}
+  <!-- End Scripts -->
+
+</body>
+
+</html>

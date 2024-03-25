@@ -1,0 +1,33 @@
+/* pipeline_rnaseq */
+.col-12 {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+.col-xl-12 {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+.col-sm-6 {
+    flex: 0 0 auto;
+    width: 50%;
+}
+
+.dropzone {
+    min-height: 150px;
+    border: 2px dashed #4b5563;
+    background: #fff;
+}
+
+.rounded {
+    border-radius: 0.5rem!important;
+}
+
+.mb-4 {
+    margin-bottom: 1.5rem!important;
+}
+
+.dropzone.dz-clickable {
+    cursor: pointer;
+}

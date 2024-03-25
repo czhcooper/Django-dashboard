@@ -1,0 +1,127 @@
+{% extends 'layouts/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>File Upload Form</title>
+  <!-- 引入Dropzone.js的CSS文件 -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <h1>File Upload Form</h1>
+  <!-- 这里添加一个表单元素，用于文件上传 -->
+  <form action="{% url 'upload_file'}" class="dropzone" id="my-dropzone"></form>
+
+  <!-- 引入Dropzone.js的JavaScript文件 -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/min/dropzone.min.js">
+        // 初始化Dropzone.js
+        Dropzone.options.myDropzone = {
+        url: "/upload/",
+        paramName: "file",
+        maxFilesize: 2,
+        maxFiles: 1,
+        acceptedFiles: ".txt,.pdf,.doc,.docx",
+        addRemoveLinks: true,
+        init: function() {
+            this.on("success", function(file, response) {
+                console.log(response.message);
+            });
+            this.on("error", function(file, errorMessage) {
+                console.log(errorMessage);
+            });
+        }
+    };
+  </script>
+
+  <script type="text/javascript">
+    var name= "ZaohuangChen";
+    console.log(name);
+  </script>
+
+
+</body>
+
+<div class="py-4">
+  <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+    <ol class="breadcrumb breadcrumb-dark breadcrumb-transparent">
+      <li class="breadcrumb-item">
+        <a href="#">
+          <svg class="icon icon-xxs" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6">
+            </path>
+          </svg>
+        </a>
+      </li>
+      <li class="breadcrumb-item"><a href="{% url 'pipeline_16S' %}">RNA-seq流程</a></li>
+      <li class="breadcrumb-item active" aria-current="page">参数设置</li>
+    </ol>
+  </nav>
+  <div class="d-flex justify-content-between w-100 flex-wrap">
+    <div class="mb-3 mb-lg-0">
+      <h1 class="h4">RNA-seq自动化流程分析
+        <span class="badge badge-sm bg-secondary text-dark ms-2">Demo</span>
+      </h1>
+      <p class="mb-0">请在下面提交数据以及设置软件运行参数：</p>
+    </div>
+    <div>
+      <a href="#"
+        class="btn btn-outline-gray"><i class="far fa-question-circle me-1"></i> 帮助文档</a>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 mb-4">
+    <div class="card border-0 shadow components-section">
+      <div class="card-body">
+        <div class="col-12 col-sm-6 col-xl-12">
+          <form action="/file-upload" class="dropzone rounded mb-4 dz-clickable">
+            <div class="dz-default dz-message">
+              <button class="dz-button" type="button">Drop files here </button>
+            </div>
+          </form>
+        </div>
+        <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
+
+        <div class="row mb-4">
+          <div class="col-lg-4 col-sm-6">
+            <!-- Form -->
+            <div class="mb-3">
+            <label for="formFile" class="form-label">Default file input example</label>
+            <input class="form-control" type="file" id="formFile">
+            </div>
+            <!-- End of Form -->     
+            
+            <!-- Form -->
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Email address</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <!-- End of Form-->
+
+
+            <h1> Test</h1>
+            <ul>
+              {% for file in  data_list %}
+                <li>{{ file.username }}</li>
+                <li>{{ file.password }}</li>
+                <li>{{ file.email }}</li>
+              {% endfor %}
+            </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
