@@ -1,7 +1,7 @@
 # Django-dashboard
 
 
-## Django代码结构
+## 项目结构
 
 ```bash
 < PROJECT ROOT >
